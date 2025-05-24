@@ -2,14 +2,15 @@
 #include<stdlib.h>
 #include<string.h>
 
-typedef struct stack{
+typedef struct stack{ //definisi stack
     int val;
     struct stack* next;
 } stack;
 
 stack* top = NULL;
 
-void add(int y, int x){
+//fungsi add menambah node bernilai x sebanyak y
+void add(int y, int x){    
     for(int i = 0; i < y; i++){
         stack* newnode = (stack*) malloc(sizeof(struct stack));
         if (newnode == NULL) {
@@ -20,8 +21,9 @@ void add(int y, int x){
         newnode->next = top;
         top = newnode;
     }
-    
-    int count = 0;
+
+// mengecek dan menampilkan jumlah stack
+    int count = 0;         
     stack* current = top;
     while(current != NULL){
         count++;
@@ -30,26 +32,26 @@ void add(int y, int x){
     printf("isi stack saat ini sebanyak: %d\n", count);
 }
 
+//fungsi menghapus stack
 void del(int y){
 
     stack* current = top;
-
     if (current == NULL){
             printf("stack kosong");
-        }
+    }
     else{
-    for(int i = 1; i <= y; i++){
-
+      for(int i = 1; i <= y; i++){
         top = top->next;
-        if(i == 1){
+//untuk menampilkan stack pertama yg di pop
+        if(i == 1){   
             printf("\ndel %d value\nstack pertama yg di pop : %d\n", y, current->val);
         }
         free(current);
-    
-    }    
-  }
+      }    
+    }
 };
 
+//fungsi untuk menambah dengan nilai d pada seluruh value stack
 void adx(int d){
 
     stack* current = top;
@@ -61,28 +63,27 @@ void adx(int d){
         while(current != NULL){
             current->val = current->val + d;
             current = current->next;
-    }
+        }
     }
 };
 
+//fungsi untuk mengurang dengan nilai d pada seluruh value stack
 void dex(int d){
 
     stack* current = top;
     if(current == NULL){
         printf("stack kosong");
     }
-
     else{
         printf("\nisi stack dikurang %d", d);
         while(current != NULL){
             current->val = current->val - d;
             current = current->next;
-    }
+        }
    }
 };
 
-
-
+//fungsi untuk menampilkan seluruh isi stack
 void printlist(stack* top){
     if(top == NULL){
         printf("stack kosong");
@@ -94,13 +95,14 @@ void printlist(stack* top){
             top = top->next;
             if(top == NULL)
             return;
-    }
+        }
     }
 }
 
 int main(){
    printf("operasi implementasi soal 4:\n1. add untuk menambahkan\n2. del untuk menghapus\n3. adx untuk menambah seluruh value dalam stack dengan bilangan x\n4. dex untunk mengurang seluruh value dalam stack dengan bilangan x\n5. printlist untuk print seluruh isi dalam stack\n6. exit\n");
    printf("\nsilahkan pilih command atau angka\ncontoh : 1 atau add\n");
+
    while(1){
 
    printf("\nsilahkan pilih :");
