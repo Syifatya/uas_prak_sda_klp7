@@ -160,8 +160,6 @@ int main(){
     else{
         printf("command tidak dikenali");
     }
-
-
 }
 
 return 0;
