@@ -1,0 +1,166 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+
+typedef struct stack{
+    int val;
+    struct stack* next;
+} stack;
+
+stack* top = NULL;
+
+void add(int y, int x){
+    for(int i = 0; i < y; i++){
+        stack* newnode = (stack*) malloc(sizeof(struct stack));
+        if (newnode == NULL) {
+            printf("alokasi memori gagal\n\n");
+            return; 
+        }
+        newnode->val = x;
+        newnode->next = top;
+        top = newnode;
+    }
+    
+    int count = 0;
+    stack* current = top;
+    while(current != NULL){
+        count++;
+        current =  current->next;
+    }
+    printf("isi stack saat ini sebanyak: %d\n", count);
+}
+
+void del(int y){
+
+    stack* current = top;
+
+    if (current == NULL){
+            printf("stack kosong");
+        }
+    else{
+    for(int i = 1; i <= y; i++){
+
+        top = top->next;
+        if(i == 1){
+            printf("\ndel %d value\nstack pertama yg di pop : %d\n", y, current->val);
+        }
+        free(current);
+    
+    }    
+  }
+};
+
+void adx(int d){
+
+    stack* current = top;
+    if(current == NULL){
+        printf("stack kosong");
+    }
+    else{
+        printf("\nisi stack ditambah %d", d);
+        while(current != NULL){
+            current->val = current->val + d;
+            current = current->next;
+    }
+    }
+};
+
+void dex(int d){
+
+    stack* current = top;
+    if(current == NULL){
+        printf("stack kosong");
+    }
+
+    else{
+        printf("\nisi stack dikurang %d", d);
+        while(current != NULL){
+            current->val = current->val - d;
+            current = current->next;
+    }
+   }
+};
+
+
+
+void printlist(stack* top){
+    if(top == NULL){
+        printf("stack kosong");
+    }
+    else{
+        printf("\nisi stack saat ini: ");
+        while(top != NULL){
+            printf("%d ", top->val);
+            top = top->next;
+            if(top == NULL)
+            return;
+    }
+    }
+}
+
+int main(){
+   printf("operasi implementasi soal 4:\n1. add untuk menambahkan\n2. del untuk menghapus\n3. adx untuk menambah seluruh value dalam stack dengan bilangan x\n4. dex untunk mengurang seluruh value dalam stack dengan bilangan x\n5. printlist untuk print seluruh isi dalam stack\n6. exit\n");
+   printf("\nsilahkan pilih command atau angka\ncontoh : 1 atau add\n");
+   while(1){
+
+   printf("\nsilahkan pilih :");
+   char pil [15];
+   fgets (pil, sizeof(pil), stdin);
+   pil[strcspn(pil, "\n")] = 0;
+   if(pil != NULL){
+    system("cls");
+   }
+
+   if (strcmp(pil, "add") == 0 || strcmp(pil, "1") == 0) {
+        int y, x;
+        printf("\nmasukkan jumlah :");
+        scanf("%d", &y);
+        getchar();
+        printf("\nmasukkan angka :");
+        scanf("%d", &x);
+        getchar();
+        add(y, x);
+
+    }
+
+    else if(strcmp(pil, "del") == 0 || strcmp(pil, "2") == 0) {
+        int y;
+        printf("masukkan jumlah value yang ingin dihapus :");
+        scanf("%d", &y);
+        getchar();
+        del(y);
+    }
+
+    else if(strcmp(pil, "adx") == 0 || strcmp(pil, "3") == 0){
+        int d;
+        printf("tambah dengan : ");
+        scanf("%d", &d);
+        getchar();
+        adx(d);
+    }
+
+    else if(strcmp(pil, "dex") == 0 || strcmp(pil, "4") == 0){
+        int d;
+        printf("kurang dengan : ");
+        scanf("%d", &d);
+        getchar();
+        dex(d);
+    }
+
+     else if(strcmp(pil, "printlist") == 0 || strcmp(pil, "5") == 0){
+        printlist(top);
+    }
+
+    else if(strcmp(pil, "exit") == 0 || strcmp(pil, "6") == 0){
+        exit(0);
+    }
+
+    else{
+        printf("command tidak dikenali");
+    }
+
+
+}
+
+return 0;
+}
