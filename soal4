@@ -100,60 +100,44 @@ void printlist(stack* top){
 }
 
 int main(){
+    int Q, y, x;
    printf("operasi implementasi soal 4:\n1. add untuk menambahkan\n2. del untuk menghapus\n3. adx untuk menambah seluruh value dalam stack dengan bilangan x\n4. dex untunk mengurang seluruh value dalam stack dengan bilangan x\n5. printlist untuk print seluruh isi dalam stack\n6. exit\n");
-   printf("\nsilahkan pilih command atau angka\ncontoh : 1 atau add\n");
-
-   while(1){
+   printf("\nsilahkan pilih command atau angka\ncontoh : \nadd 3 (jumlah yg mau diisi) 2 (nilai yg mau diisi)\ndel 2(banyak nilai yang mau dihapus)\nadx 3(nilai yg ingin ditambah ke setiap value stack)\ndex 4(nilai yg ingin dikurang ke setiap value stack)\n");
+   printf("jalankan sebanyak : ");
+   scanf("%d", &Q);
+   getchar(); 
+   
+   for(int i = 1; i<= Q; i++){
 
    printf("\nsilahkan pilih :");
-   char pil [15];
-   fgets (pil, sizeof(pil), stdin);
-   pil[strcspn(pil, "\n")] = 0;
-   if(pil != NULL){
-    system("cls");
-   }
+    char pil[100];
+    char cmd[20];
+    fgets(pil, sizeof(pil), stdin);
+    pil[strcspn(pil, "\n")] = 0;
+    sscanf(pil, "%s %d %d", cmd, &y, &x);
 
-   if (strcmp(pil, "add") == 0 || strcmp(pil, "1") == 0) {
-        int y, x;
-        printf("\nmasukkan jumlah :");
-        scanf("%d", &y);
-        getchar();
-        printf("\nmasukkan angka :");
-        scanf("%d", &x);
-        getchar();
+   if (strcmp(cmd, "add") == 0 && y != 0) {
         add(y, x);
-
     }
 
-    else if(strcmp(pil, "del") == 0 || strcmp(pil, "2") == 0) {
-        int y;
-        printf("masukkan jumlah value yang ingin dihapus :");
-        scanf("%d", &y);
-        getchar();
+    else if(strcmp(cmd, "del") == 0 || strcmp(pil, "2") == 0) {     
         del(y);
     }
 
-    else if(strcmp(pil, "adx") == 0 || strcmp(pil, "3") == 0){
-        int d;
-        printf("tambah dengan : ");
-        scanf("%d", &d);
-        getchar();
-        adx(d);
+    else if(strcmp(cmd, "adx") == 0 || strcmp(pil, "3") == 0){    
+        adx(y);
     }
 
-    else if(strcmp(pil, "dex") == 0 || strcmp(pil, "4") == 0){
-        int d;
-        printf("kurang dengan : ");
-        scanf("%d", &d);
-        getchar();
-        dex(d);
+    else if(strcmp(cmd, "dex") == 0 || strcmp(pil, "4") == 0){
+        dex(y);
     }
 
-     else if(strcmp(pil, "printlist") == 0 || strcmp(pil, "5") == 0){
+     else if(strcmp(cmd, "printlist") == 0 || strcmp(pil, "5") == 0){
         printlist(top);
     }
 
-    else if(strcmp(pil, "exit") == 0 || strcmp(pil, "6") == 0){
+    else if(strcmp(cmd, "exit") == 0 ){
+        system("cls");
         exit(0);
     }
 
