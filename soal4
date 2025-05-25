@@ -47,6 +47,7 @@ void del(int y){
             printf("\ndel %d value\nstack pertama yg di pop : %d\n", y, current->val);
         }
         free(current);
+        current = top;
       }    
     }
 };
